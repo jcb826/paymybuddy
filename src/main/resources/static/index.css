@@ -1,0 +1,31 @@
+body {
+  background-image: linear-gradient(180deg, #eee, #fff 100px, #fff);
+}
+
+.container {
+  max-width: 1500px;
+}
+
+.pricing-header {
+  max-width: 700px;
+}
+
+.logo{
+    width: 200px;
+    height: 35px;
+    border-radius: 10px;
+    text-align: center;
+    color :#FFFFFF;
+    Background-color: #59BA5A;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #59ba5a;
+    border-color: #59ba5a;
+}
+element.style {
+display: flex;
+justify-content: space-between;
+}
+
+
