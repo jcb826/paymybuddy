@@ -14,10 +14,13 @@ import java.util.Optional;
 @Service("UserService")
 public class UserService {
     @Autowired
+    PasswordEncoder passwordEncoder;
+    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    PasswordEncoder passwordEncoder;
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public User registration(final RegistrationForm form) {
         User userModel = populateCustomerData(form);
@@ -33,25 +36,19 @@ public class UserService {
         return user;
     }
 
+    //  deuxieme maniere de faire userRepository.findUserByMail(form.getEmail()).filter(u->passwordEncoder.matches(rawPassword,u.getPassword())).isPresent();
+    public boolean signin(LoginForm form) {
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        Optional<User> user = userRepository
+                .findUserByMail(form.getEmail());
+
+        if (user.isPresent()) {
+            String rawPassword = passwordEncoder.encode(form.getPassword());
+
+            return passwordEncoder.matches(rawPassword, user.get().getPassword());
+        }
+        return false;
     }
-/*
-public void signin(LoginForm form){
-
-boolean userExists = userRepository
-        .findUserByMail(form.getEmail())
-        .isPresent();
-if(userExists){
-    String rawPassword= passwordEncoder.encode(form.getPassword());
-   Optional user =userRepository.findUserByMail(form.getEmail());
-    passwordEncoder.matches(rawPassword,user.stream());
-}
-}
-
- */
-
 
 
     /*
