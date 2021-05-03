@@ -14,16 +14,39 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Override
-    protected void configure(HttpSecurity http)throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http
+
                 .authorizeRequests()
                 .anyRequest()
                 .permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/signin")
+                .defaultSuccessUrl("/paymybuddy", true)
                 .and()
-                .httpBasic();
+                .httpBasic()
+                .and()
+                .rememberMe();
+                /*
+                .authorizeRequests()
+                .antMatchers("/", "index", "/css/*").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/signin").permitAll()
+                .defaultSuccessUrl("/paymybuddy", true)
+                .and()
+                .httpBasic()
+                .and()
+                .rememberMe();
+
+                 */
+
     }
+
+
 }
