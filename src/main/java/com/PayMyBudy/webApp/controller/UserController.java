@@ -2,13 +2,11 @@ package com.PayMyBudy.webApp.controller;
 
 import com.PayMyBudy.model.User;
 import com.PayMyBudy.service.UserService;
+import com.PayMyBudy.service.form.LoginForm;
 import com.PayMyBudy.service.form.RegistrationForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Arrays;
@@ -29,14 +27,10 @@ private final UserService userService;
         return "index";
     }
     @GetMapping("/signin")
-    public String showForm(Model model) {
-        User user = new User();
-        List<String> professionList = Arrays.asList("Developer", "Designer", "Tester");
+    public ModelAndView showForm(Model model) {
 
-        model.addAttribute("user", user);
-        model.addAttribute("professionList", professionList);
 
-        return "signin";
+        return new ModelAndView("signin","loginForm",new LoginForm());
     }
     @GetMapping("/register")
     public ModelAndView showRegisterForm( ) {
@@ -76,5 +70,22 @@ private final UserService userService;
 
         return "contact";
     }
+@PostMapping("login")
+    public String processLogin(@ModelAttribute("loginForm") LoginForm form) {
+       if (userService.signin(form)){
+           return "index";
+       }
+       return "signin";
+        /*
+        List<User> users = userService.getUsers();
+        ModelAndView model = new ModelAndView("getEmployees");
+        model.addObject("employees", employees);
+
+
+        return model;
+        */
+
+    }
+
 //oki
 }

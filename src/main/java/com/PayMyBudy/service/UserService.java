@@ -5,9 +5,13 @@ import com.PayMyBudy.repository.UserRepository;
 import com.PayMyBudy.service.form.LoginForm;
 import com.PayMyBudy.service.form.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -43,9 +47,16 @@ public class UserService {
                 .findUserByMail(form.getEmail());
 
         if (user.isPresent()) {
-            String rawPassword = passwordEncoder.encode(form.getPassword());
 
-            return passwordEncoder.matches(rawPassword, user.get().getPassword());
+
+            boolean match = passwordEncoder.matches(form.getPassword(), user.get().getPassword());
+            if (match){
+                Authentication auth= new UsernamePasswordAuthenticationToken(user.get().getFirstName()+user.get().getLastName(), null, List.of());
+                SecurityContextHolder.getContext().setAuthentication(auth);
+            }
+
+            return match;
+
         }
         return false;
     }
