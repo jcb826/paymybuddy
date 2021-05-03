@@ -27,5 +27,18 @@ element.style {
 display: flex;
 justify-content: space-between;
 }
+.add-connection {
+
+border-radius: .3rem;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.contact-us {
+border-radius: .3rem;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
 
 

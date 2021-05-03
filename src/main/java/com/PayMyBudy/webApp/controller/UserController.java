@@ -26,8 +26,6 @@ private final UserService userService;
     @RequestMapping("/")
     public String home() {
 
-
-
         return "index";
     }
     @GetMapping("/signin")

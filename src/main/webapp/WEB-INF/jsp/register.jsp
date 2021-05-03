@@ -40,10 +40,12 @@
   <body class="text-center">
 <div class="container">
 <main class="form-signin">
-<div id="addEmployee">
+<div id="addUser">
+ <h4 class="logo">Pay My Budy</h4>
+             </br>
   <form:form action="registration" method="post"
   			modelAttribute="registrationForm">
-    <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"/>
+
     <h1 class="h3 mb-3 fw-normal">Register</h1>
     <div class="form-floating">
       <form:input path="firstName" type="text" class="form-control floatingInput"/>

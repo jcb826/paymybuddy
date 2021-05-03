@@ -18,23 +18,11 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-
+                .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/","index","/css/*","js/*").permitAll()
                 .anyRequest()
                 .permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/signin")
-                .defaultSuccessUrl("/paymybuddy", true)
-                .and()
-                .httpBasic()
-                .and()
-                .rememberMe();
-                /*
-                .authorizeRequests()
-                .antMatchers("/", "index", "/css/*").permitAll()
-                .anyRequest()
-                .authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/signin").permitAll()
@@ -44,7 +32,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .rememberMe();
 
-                 */
 
     }
 

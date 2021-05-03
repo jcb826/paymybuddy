@@ -61,7 +61,7 @@
   <div class="flex">
 <h4> Send money
 </h4>
- <button class="btn btn-primary btn-lg btn-block" type="submit">Add connection</button>
+ <button class="add-connection" type="submit">Add connection</button>
 <div>
             <form class="needs-validation" novalidate>
                      <div class="row g-3">

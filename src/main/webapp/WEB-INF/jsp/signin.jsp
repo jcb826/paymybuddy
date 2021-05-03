@@ -8,12 +8,13 @@
     <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous">
     <link href="signin.css" rel="stylesheet">
   </head>
-  <body cz-shortcut-listen="true">
+  <body class="text-center" cz-shortcut-listen="true">
      <div class="container">
       <form class="form-signin" method="post" action="/paymybuddy/login">
        <h4 class="logo">Pay My Budy</h4>
              </br>
         <h2 class="form-signin-heading">Please sign in</h2>
+        </br>
         <p>
           <label for="username" class="sr-only">Username</label>
           <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
@@ -31,7 +32,7 @@
 <input name="_csrf" type="hidden" value="f8a51a49-7f8b-418f-a6a1-a5d02ff4bdbd">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
          </br>
-            </br>
+
          <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/register">New Member ?</a>
       </form>
 </div>
