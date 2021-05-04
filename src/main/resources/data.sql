@@ -25,13 +25,17 @@ CREATE TABLE user (
                     CONSTRAINT FK_user_id_friend FOREIGN KEY (user_id) REFERENCES user(id),
                     CONSTRAINT FK_connection_id_connection FOREIGN KEY (connection_id) REFERENCES user(id)
                 )
-                  CREATE TABLE TRANSFER (
+
+
+                CREATE TABLE transfer (
+
+
                                     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                                     from_userId INT NOT NULL,
                                     to_userId INT NOT NULL,
                                     amountBeforeFee DOUBLE(10, 2) NOT NULL,
                                     amountAfterFee DOUBLE(10, 2) NOT NULL,
-                                     date DATETIME NOT NULL,
+                                    date date  NOT NULL,
                                     description TEXT,
                                     CONSTRAINT FK_from_userId FOREIGN KEY (from_userId) REFERENCES user(id),
                                     CONSTRAINT FK_to_userId FOREIGN KEY (to_userId) REFERENCES user(id)
