@@ -29,7 +29,7 @@
         </p>
           <p>
             Remember me ?
-                  <input type="checkbox" id="remember-me" name="remember-me" class="checkbox"  required=""/>
+                  <input type="checkbox" id="remember-me" name="remember-me" class="checkbox" />
 
                 </p>
 

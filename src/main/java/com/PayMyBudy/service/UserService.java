@@ -35,7 +35,7 @@ public class UserService {
         User user = new User();
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        user.setMail(form.getEmail());
+        user.setEmail(form.getEmail());
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         return user;
     }
@@ -76,40 +76,6 @@ public class UserService {
             userProxy.deleteUser(id);;
         }
     */
-    /*
-    public void registration(RegistrationForm form) {
-        User user = new User();
-        //
-        if (!form.getPassword().equals(form.getConfirmPassword())) {
-            throw new RuntimeException("password and confirm are not the same !");
 
-        }
-        user.setFirstName(form.getFirstName());
-        user.setLastName(form.getLastName());
-        user.setMail(form.getEmail());
-        // to do encode password
-        user.setPassword(form.getPassword());
-        userRepository.save(user);
-
-    }
-    */
-
-/*  public void login(LoginForm form) {
-        User user = new User();
-        userRepository.findUserByMail(form.getEmail());
-        //
-        if (!form.getPassword().equals(form.getConfirmPassword())) {
-            throw new RuntimeException("password and confirm are not the same !");
-
-        }
-        user.setFirstName(form.getFirstName());
-        user.setLastName(form.getLastName());
-        user.setMail(form.getEmail());
-        // to do encode password
-        user.setPassword(form.getPassword());
-        userRepository.save(user);
-
-    }
- */
 
 }
