@@ -59,9 +59,27 @@
     </nav>
   </header>
   <div class="flex">
-<h4> Send money
-</h4>
- <button class="add-connection" type="submit">Add connection</button>
+<form:form action="add-connection" method="post"
+  			modelAttribute="addConnectionForm">
+
+              <input type="hidden" data-form-email="true">
+
+              <div class="form-group">
+                <input type="email" class="form-control" name="email" required="" placeholder="Email*" data-form-field="Email">
+              </div>
+<div class="form-floating">
+      <form:input path="email" type="email" class="form-control floatingInput" />
+      <label for="floatingInput">Email address</label>
+    </div>
+
+              <div>
+                <button type="submit" class="contact-us">Add connection</button>
+              </div>
+            </form:form>
+            </br>
+            <h4> Send money
+            </h4>
+
 <div>
             <form class="needs-validation" novalidate>
                      <div class="row g-3">

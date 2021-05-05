@@ -1,7 +1,9 @@
 package com.PayMyBudy.service;
 
+import com.PayMyBudy.model.Connection;
 import com.PayMyBudy.model.User;
 import com.PayMyBudy.repository.UserRepository;
+import com.PayMyBudy.service.form.AddConnectionForm;
 import com.PayMyBudy.service.form.LoginForm;
 import com.PayMyBudy.service.form.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +46,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(form.getPassword()));
         return user;
     }
+
 
     //  deuxieme maniere de faire userRepository.findUserByMail(form.getEmail()).filter(u->passwordEncoder.matches(rawPassword,u.getPassword())).isPresent();
     public boolean signin(LoginForm form) {

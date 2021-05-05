@@ -1,7 +1,8 @@
 package com.PayMyBudy.webApp.controller;
 
-import com.PayMyBudy.model.User;
+import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.UserService;
+import com.PayMyBudy.service.form.AddConnectionForm;
 import com.PayMyBudy.service.form.LoginForm;
 import com.PayMyBudy.service.form.RegistrationForm;
 import org.springframework.stereotype.Controller;
@@ -9,16 +10,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Controller
 
 public class UserController {
-private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
+    private final ConnectionService connectionService;
+    private final UserService userService;
+public UserController(ConnectionService connectionService, UserService userService) {
+    this.connectionService = connectionService;
+    this.userService = userService;
     }
 
     @RequestMapping("/")
@@ -42,14 +41,13 @@ private final UserService userService;
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public void processRequest(@ModelAttribute("registrationForm") RegistrationForm form) {
         userService.registration(form);
-        /*
-        List<User> users = userService.getUsers();
-        ModelAndView model = new ModelAndView("getEmployees");
-        model.addObject("employees", employees);
 
 
-        return model;
-        */
+    }
+    @RequestMapping(value = "/addConnection", method = RequestMethod.POST)
+    public void processRequest(@ModelAttribute("addConnectionForm") AddConnectionForm form) {
+      // connectionService.addConnectionForm(form);
+
 
     }
     @GetMapping("/home")
