@@ -12,6 +12,9 @@ public class Connection {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CONNECTION_SEQ")
     @SequenceGenerator(name = "CONNECTION_SEQ", sequenceName = "CONNECTION_SEQ")
     Integer id;
-    String userId;
-    String connectionId;
+    @ManyToOne
+    User user1;
+    @ManyToOne
+    User user2;
+
 }

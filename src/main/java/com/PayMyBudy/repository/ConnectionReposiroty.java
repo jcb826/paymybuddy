@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ConnectionReposiroty extends CrudRepository<Transfer, Long> {
+public interface ConnectionReposiroty extends CrudRepository<Connection, Integer> {
 
-   // public Optional<Connection> findConnectionByEmail(String transfer);
+    // interface qui point sur la base
 }

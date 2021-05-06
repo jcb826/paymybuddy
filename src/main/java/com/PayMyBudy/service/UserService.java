@@ -59,7 +59,7 @@ public class UserService {
 
             boolean match = passwordEncoder.matches(form.getPassword(), user.get().getPassword());
             if (match){
-                Authentication auth= new UsernamePasswordAuthenticationToken(user.get().getFirstName()+user.get().getLastName(), null, List.of());
+                Authentication auth= new UsernamePasswordAuthenticationToken(user.get().getEmail(), null, List.of());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
 

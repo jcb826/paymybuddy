@@ -1,7 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"     pageEncoding="utf-8"%>
+ <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
 <html lang="en">
   <head>
-   <%@ page pageEncoding="UTF-8" %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -59,14 +61,10 @@
     </nav>
   </header>
   <div class="flex">
-<form:form action="add-connection" method="post"
+<form:form action="addConnection" method="post"
   			modelAttribute="addConnectionForm">
 
-              <input type="hidden" data-form-email="true">
 
-              <div class="form-group">
-                <input type="email" class="form-control" name="email" required="" placeholder="Email*" data-form-field="Email">
-              </div>
 <div class="form-floating">
       <form:input path="email" type="email" class="form-control floatingInput" />
       <label for="floatingInput">Email address</label>

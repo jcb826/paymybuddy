@@ -45,10 +45,17 @@ public UserController(ConnectionService connectionService, UserService userServi
 
     }
     @RequestMapping(value = "/addConnection", method = RequestMethod.POST)
-    public void processRequest(@ModelAttribute("addConnectionForm") AddConnectionForm form) {
-      // connectionService.addConnectionForm(form);
+    public ModelAndView processRequest(@ModelAttribute("addConnectionForm") AddConnectionForm form) {
+   connectionService.addConnection(form);
+        return new ModelAndView("transfer","addConnectionForm",new AddConnectionForm());
 
 
+    }
+    @GetMapping("/transfer")
+    public ModelAndView transfer(Model model) {
+
+
+        return new ModelAndView("transfer","addConnectionForm",new AddConnectionForm());
     }
     @GetMapping("/home")
     public String logOff(Model model) {
@@ -56,12 +63,7 @@ public UserController(ConnectionService connectionService, UserService userServi
 
         return "home";
     }
-    @GetMapping("/transfer")
-    public String showTransferForm(Model model) {
 
-
-        return "transfer";
-    }
     @GetMapping("/contact")
     public String showContactForm(Model model) {
 
