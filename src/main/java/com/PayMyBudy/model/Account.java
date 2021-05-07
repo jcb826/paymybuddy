@@ -14,8 +14,9 @@ public class Account {
     @SequenceGenerator(name = "ACCOUNT_SEQ", sequenceName = "ACCOUNT_SEQ")
 
 
-    private Integer userId;
-    //  private User user;
+    private Integer accountId;
+  @OneToOne
+    private User user;
     private Double amount;
     private LocalDate date;
 

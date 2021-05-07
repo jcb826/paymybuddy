@@ -13,7 +13,6 @@ public class Transfer {
     @SequenceGenerator(name = "TRANSFER_SEQ", sequenceName = "TRANSFER_SEQ")
     private Integer id;
     private LocalDate date;
-    private String description;
     private String userFromEmail;
     private String userToEmail;
     private Double amountBeforeFee;

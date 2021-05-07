@@ -10,12 +10,15 @@ import com.PayMyBudy.service.form.TransferForm;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Service("TransferService")
 public class TransferService {
 
-    private TransferRepository transferRepository;
     private final UserRepository userRepository;
     private final AccountRepository accountRepository;
+    private TransferRepository transferRepository;
 
     public TransferService(TransferRepository transferRepository, UserRepository userRepository, AccountRepository accountRepository) {
         this.transferRepository = transferRepository;
@@ -26,28 +29,27 @@ public class TransferService {
     public void transfer(TransferForm form) {
         if (form != null) {
 
-                Transfer transfer = new Transfer();
-                transfer.setDate(form.getDate());
-                transfer.setDescription(form.getDescription());
-            String connectedUserMail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+            Transfer transfer = new Transfer();
+            LocalDate date = null;
+            transfer.setDate(date);
+            transfer.setUserFromEmail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+            transfer.setUserToEmail(form.getUserToEmail());
+            transfer.setAmountAfterFee((form.getAmountBeforeFee() - form.getAmountBeforeFee() / 200));
             User userConnected = userRepository
-                    .findUserByMail(connectedUserMail)
-                    .orElseThrow(()->new RuntimeException("user with email "+form.getUserFromEmail()+" not found"));
-                transfer.setUserToEmail(form.getUserToEmail());
-                transfer.setAmountBeforeFee(form.getAmountBeforeFee());
-                transfer.setAmountAfterFee((form.getAmountBeforeFee()-form.getAmountBeforeFee()/200));
-      /*          // get the Account of the coennnected user
-  Account userConnectedAccount= accountRepository.findById(SecurityContextHolder.getContext().getAuthentication().getId());
-Double amount = userConnectedAccount.getAmount();
-amount = amount - transfer.getAmountAfterFee();
-accountRepository.save(userConnectedAccount);
+                    .findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+                    .orElseThrow(() -> new RuntimeException("user with email  not found"));
+            // get the Account of the coennnected user
+            Account userConnectedAccount = accountRepository.findAccountByUser(userConnected).orElseThrow(() -> new RuntimeException("user with email  not found"));
+            userConnectedAccount.setAmount(userConnectedAccount.getAmount() - transfer.getAmountAfterFee());
+            accountRepository.save(userConnectedAccount);
             transferRepository.save(transfer);
 
 
-       */
         } else {
 
         }
     }
+
+
 }
 
