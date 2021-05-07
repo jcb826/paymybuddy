@@ -15,8 +15,8 @@ public class Account {
 
 
     private Integer userId;
+    //  private User user;
     private Double amount;
     private LocalDate date;
-
 
 }
