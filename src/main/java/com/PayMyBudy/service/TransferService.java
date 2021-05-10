@@ -11,7 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.sql.Date;
+
 
 @Service("TransferService")
 public class TransferService {
@@ -30,7 +31,8 @@ public class TransferService {
         if (form != null) {
 
             Transfer transfer = new Transfer();
-            LocalDate date = null;
+            long millis=System.currentTimeMillis();
+            LocalDate date=new java.sql.Date(millis).toLocalDate();
             transfer.setDate(date);
             transfer.setUserFromEmail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
             transfer.setUserToEmail(form.getUserToEmail());

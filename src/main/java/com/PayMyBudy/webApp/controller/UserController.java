@@ -39,9 +39,10 @@ public UserController(ConnectionService connectionService, UserService userServi
     }
     //Get the form field values which are populated using the backing bean and store it in db
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public void processRequest(@ModelAttribute("registrationForm") RegistrationForm form) {
+    public ModelAndView processRequest(@ModelAttribute("registrationForm") RegistrationForm form) {
         userService.registration(form);
 
+        return new ModelAndView("signin","loginForm",new LoginForm());
 
     }
     @RequestMapping(value = "/addConnection", method = RequestMethod.POST)
