@@ -10,8 +10,7 @@ import com.PayMyBudy.service.form.TransferForm;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 
 @Service("TransferService")
@@ -29,21 +28,19 @@ public class TransferService {
 
     public void transfer(TransferForm form) {
         if (form != null) {
-
-            Transfer transfer = new Transfer();
-            long millis=System.currentTimeMillis();
-            LocalDate date=new java.sql.Date(millis).toLocalDate();
-            transfer.setDate(date);
-            transfer.setUserFromEmail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
-            transfer.setUserToEmail(form.getUserToEmail());
-            transfer.setAmountAfterFee((form.getAmountBeforeFee() - form.getAmountBeforeFee() / 200));
-            User userConnected = userRepository
-                    .findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+            User from = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
                     .orElseThrow(() -> new RuntimeException("user with email  not found"));
+            User to = userRepository.findUserByMail(form.getTo())
+                    .orElseThrow(() -> new RuntimeException("user with email  not found"));
+            Transfer transfer = new Transfer();
+
+            transfer.setDate(LocalDateTime.now());
+            transfer.setAmountBeforeFee(form.getAmount());
+            transfer.setAmountAfterFee(form.getAmount() - form.getAmount() * 0.005);
             // get the Account of the coennnected user
-            Account userConnectedAccount = accountRepository.findAccountByUser(userConnected).orElseThrow(() -> new RuntimeException("user with email  not found"));
-            userConnectedAccount.setAmount(userConnectedAccount.getAmount() - transfer.getAmountAfterFee());
-            accountRepository.save(userConnectedAccount);
+             from.getAccount().setAmount(from.getAccount().getAmount()-transfer.getAmountBeforeFee());
+            accountRepository.save(from.getAccount().minus(transfer.getAmountBeforeFee()));
+            accountRepository.save(from.getAccount().plus(transfer.getAmountAfterFee()));
             transferRepository.save(transfer);
 
 

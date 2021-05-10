@@ -15,9 +15,20 @@ public class Account {
 
 
     private Integer accountId;
-  @OneToOne
+     @OneToOne
     private User user;
     private Double amount;
     private LocalDate date;
 
+    public Account plus (double amount){
+
+        this.amount+=amount;
+        return this;
+    }
+
+    public Account minus (double amount){
+
+        this.amount-=amount;
+        return this;
+    }
 }

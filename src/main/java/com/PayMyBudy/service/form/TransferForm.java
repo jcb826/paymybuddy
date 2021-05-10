@@ -10,8 +10,7 @@ public class TransferForm {
 
     private Integer id;
     private LocalDate date;
-    private String userFromEmail;
-    private String userToEmail;
-    private Double amountBeforeFee;
-    private Double amountAfterFee;
+    private String to;
+    private Double amount;
+
 }

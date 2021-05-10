@@ -7,6 +7,10 @@ import com.PayMyBudy.repository.UserRepository;
 import com.PayMyBudy.service.form.AddConnectionForm;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service("ConnectionService")
 public class ConnectionService {
 
@@ -34,6 +38,11 @@ public class ConnectionService {
      connectionRepository.save(connection);
 
 
+
+    }
+    public List <String> findConnectionsEmail(){
+        String connectedUserMail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+return connectionRepository.findConnectionsByUser1Email(connectedUserMail).stream().map(Connection::getUser1).map(User::getEmail).collect(Collectors.toList());
 
     }
 

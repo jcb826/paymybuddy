@@ -4,6 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Data
 @Entity
 public class Transfer {
@@ -12,9 +14,11 @@ public class Transfer {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TRANSFER_SEQ")
     @SequenceGenerator(name = "TRANSFER_SEQ", sequenceName = "TRANSFER_SEQ")
     private Integer id;
-    private LocalDate date;
-    private String userFromEmail;
-    private String userToEmail;
+    private LocalDateTime date;
+    @ManyToOne
+    private User from;
+    @ManyToOne
+    private User to;
     private Double amountBeforeFee;
     private Double amountAfterFee;
 
