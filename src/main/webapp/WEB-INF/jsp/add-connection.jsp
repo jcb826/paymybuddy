@@ -15,30 +15,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/pricing/">
-
-
-
-        <!-- Bootstrap core CSS -->
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-        <style>
-          .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-          }
-
-          @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-              font-size: 3.5rem;
-            }
-          }
-        </style>
-
-
-        <!-- Custom styles for this template -->
         <link href="index.css" rel="stylesheet">
 
       </head>
@@ -67,45 +44,26 @@
             </nav>
           </header>
           <div class="flex">
-         <a href = "connection">
-         add a connection
-         </a>
+
+            <form:form action="connection" method="post" modelAttribute="addConnectionForm">
+
+
+              <div class="form-floating">
+                <form:input path="email" type="email" class="form-control floatingInput" />
+                <label for="floatingInput">Email address</label>
+              </div>
+
+              <div>
+                <button type="submit" class="contact-us">Add connection</button>
+              </div>
+            </form:form>
+
             </br>
             <h4> Send money
             </h4>
 
             <div>
-              <form:form action="transfer" method="post" class="needs-validation" modelAttribute="transferForm">
-                <div class="row g-3">
-                  <div class="col-md-5">
-                    <label for="connection" class="form-label"></label>
-                    <form:select path="to" class="form-select" id="connection" required="true">
-                      <option value="">Select a connection</option>
-                      <c:forEach items="${connections}" var="connection">
-                        <option value="${connection}"> ${connection} </option>
-                      </c:forEach>
-                      </form:select>
-                      <div class="invalid-feedback">
-                        Please select a valid connection.
-                      </div>
-                  </div>
 
-                  <div class="col-md-4">
-                    <label for="amount" class="form-label"></label>
-                    <form:input path="amount" type="number" step="0.01" class="form-control floatingInput" />
-                    <div class="invalid-feedback">
-                      Please provide a valid amount.
-                    </div>
-                  </div>
-
-                  <div class="col-md-3">
-                    </br>
-                    <form:button class="btn btn-primary btn-lg btn-block" type="submit"> Pay </form:button>
-
-                  </div>
-                </div>
-
-              </form:form>
 
               <main>
                 </br>

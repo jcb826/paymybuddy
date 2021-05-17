@@ -1,5 +1,6 @@
 package com.PayMyBudy.service;
 
+import com.PayMyBudy.model.Account;
 import com.PayMyBudy.model.Connection;
 import com.PayMyBudy.model.User;
 import com.PayMyBudy.repository.UserRepository;
@@ -35,6 +36,10 @@ public class UserService {
 
     public User registration(final RegistrationForm form) {
         User userModel = populateCustomerData(form);
+        Account account = new Account();
+        account.setAmount(0.0);
+        account.setUser(userModel);
+        userModel.setAccount(account);
         return userRepository.save(userModel);
     }
 

@@ -11,6 +11,6 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends CrudRepository<Account, Long> {
-    public Optional<Account> findAccountByUser(User user);
+
     // interface qui point sur la base
 }

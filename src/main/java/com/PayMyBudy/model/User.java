@@ -22,7 +22,7 @@ public class User {
     private String password;
     @ManyToMany
     private List<Connection> connections;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
    private Account account;
 
 }

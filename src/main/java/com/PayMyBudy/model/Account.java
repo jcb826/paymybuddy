@@ -18,7 +18,7 @@ public class Account {
      @OneToOne
     private User user;
     private Double amount;
-    private LocalDate date;
+
 
     public Account plus (double amount){
 
