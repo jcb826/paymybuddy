@@ -1,6 +1,7 @@
 package com.PayMyBudy.service;
 
 import com.PayMyBudy.model.Account;
+import com.PayMyBudy.model.Connection;
 import com.PayMyBudy.model.Transfer;
 import com.PayMyBudy.model.User;
 import com.PayMyBudy.repository.AccountRepository;
@@ -11,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service("TransferService")
@@ -19,6 +22,7 @@ public class TransferService {
     private final UserRepository userRepository;
     private final AccountRepository accountRepository;
     private TransferRepository transferRepository;
+
 
     public TransferService(TransferRepository transferRepository, UserRepository userRepository, AccountRepository accountRepository) {
         this.transferRepository = transferRepository;
@@ -37,7 +41,7 @@ public class TransferService {
             transfer.setAmountBeforeFee(form.getAmount());
             transfer.setAmountAfterFee(form.getAmount() - form.getAmount() * 0.005);
             // get the Account of the coennnected user
-             from.getAccount().setAmount(from.getAccount().getAmount()-transfer.getAmountBeforeFee());
+
             accountRepository.save(from.getAccount().minus(transfer.getAmountBeforeFee()));
             accountRepository.save(to.getAccount().plus(transfer.getAmountAfterFee()));
             transferRepository.save(transfer);
@@ -46,6 +50,14 @@ public class TransferService {
         } else {
 
         }
+    }
+    public List<Transfer> findTransactions(){
+        String connectedUserMail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        User userConnected = userRepository
+                .findUserByMail(connectedUserMail)
+                .orElseThrow(()->new RuntimeException("user with email not found"));
+        return transferRepository.findTransferById(userConnected.getId());
+
     }
 
 

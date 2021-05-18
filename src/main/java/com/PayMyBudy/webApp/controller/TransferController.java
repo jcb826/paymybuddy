@@ -1,5 +1,6 @@
 package com.PayMyBudy.webApp.controller;
 
+import com.PayMyBudy.model.Transfer;
 import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.TransferService;
 import com.PayMyBudy.service.form.TransferForm;
@@ -35,7 +36,9 @@ public class TransferController {
     @GetMapping()
     public ModelAndView transfer(Model model) {
         List<String> contacts = connectionService.findConnectionsEmail();
+        List<Transfer> transactions = transferService.findTransactions();
         model.addAttribute("connections", contacts);
+        model.addAttribute("transfers", transactions);
         return new ModelAndView("transfer", "transferForm", new TransferForm());
     }
 }

@@ -66,10 +66,9 @@
               <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/signin">Log off </a>
             </nav>
           </header>
+          <a href="connection"><button class="btn btn-lg btn-primary btn-block">add a connection</button></a>
           <div class="flex">
-         <a href = "connection">
-         add a connection
-         </a>
+
             </br>
             <h4> Send money
             </h4>
@@ -115,7 +114,6 @@
                   <table class="table text-center">
                     <thead>
                       <tr>
-
                         <th style="width: 33%;">Connection</th>
                         <th style="width: 33%;">Description</th>
                         <th style="width: 33%;">Amount</th>

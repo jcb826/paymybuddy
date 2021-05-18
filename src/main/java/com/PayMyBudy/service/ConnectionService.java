@@ -37,12 +37,10 @@ public class ConnectionService {
         connection.setUser2(user);
      connectionRepository.save(connection);
 
-
-
     }
     public List <String> findConnectionsEmail(){
         String connectedUserMail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-return connectionRepository.findConnectionsByUser1Email(connectedUserMail).stream().map(Connection::getUser1).map(User::getEmail).collect(Collectors.toList());
+return connectionRepository.findConnectionsByUser1Email(connectedUserMail).stream().map(Connection::getUser2).map(User::getEmail).collect(Collectors.toList());
 
     }
 
