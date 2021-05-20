@@ -66,7 +66,13 @@
               <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/signin">Log off </a>
             </nav>
           </header>
-          <a href="connection"><button class="btn btn-lg btn-primary btn-block">add a connection</button></a>
+          <div class="box">
+
+            <div class="selected"><a href="connection"><button class="btn btn-lg btn-primary btn-block">add a connection</button></a></div>
+
+          </div>
+
+
           <div class="flex">
 
             </br>
@@ -120,7 +126,13 @@
                       </tr>
                     </thead>
                     <tbody>
-
+                         <c:forEach items="${transfers}" var="transfer">
+                         <tr>
+                         <td>${transfer.to.firstName} ${transfer.to.lastName}</td>
+                         <td> description </td>
+                         <td> ${transfer.amountBeforeFee} €</td>
+                         </tr>
+                          </c:forEach>
                     </tbody>
                   </table>
                 </div>

@@ -19,6 +19,6 @@ import java.util.Optional;
 
         public Optional<Transfer> findTransferByDate(String transfer);
 
-        @Query("SELECT t FROM Transfer t WHERE t.from.id= :id")
-        List<Transfer> findTransferById(Integer id );
+        @Query("SELECT c FROM Transfer c WHERE c.from.id= :id")
+        List<Transfer> findTransferByUserId(Integer id );
 }

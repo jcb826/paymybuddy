@@ -23,6 +23,6 @@ public class User {
     @ManyToMany
     private List<Connection> connections;
     @OneToOne(cascade = CascadeType.ALL)
-   private Account account;
+    private Account account;
 
 }

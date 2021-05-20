@@ -40,6 +40,8 @@ public class TransferService {
             transfer.setDate(LocalDateTime.now());
             transfer.setAmountBeforeFee(form.getAmount());
             transfer.setAmountAfterFee(form.getAmount() - form.getAmount() * 0.005);
+            transfer.setFrom(from);
+            transfer.setTo(to);
             // get the Account of the coennnected user
 
             accountRepository.save(from.getAccount().minus(transfer.getAmountBeforeFee()));
@@ -52,11 +54,9 @@ public class TransferService {
         }
     }
     public List<Transfer> findTransactions(){
-        String connectedUserMail = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-        User userConnected = userRepository
-                .findUserByMail(connectedUserMail)
-                .orElseThrow(()->new RuntimeException("user with email not found"));
-        return transferRepository.findTransferById(userConnected.getId());
+        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+                .orElseThrow(() -> new RuntimeException("user with email  not found"));
+        return transferRepository.findTransferByUserId(connectedUser.getId());
 
     }
 
