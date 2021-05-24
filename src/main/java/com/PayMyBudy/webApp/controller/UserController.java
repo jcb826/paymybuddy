@@ -1,5 +1,6 @@
 package com.PayMyBudy.webApp.controller;
 
+import com.PayMyBudy.model.Transfer;
 import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.TransferService;
 import com.PayMyBudy.service.UserService;
@@ -7,6 +8,7 @@ import com.PayMyBudy.service.form.AddConnectionForm;
 import com.PayMyBudy.service.form.LoginForm;
 import com.PayMyBudy.service.form.RegistrationForm;
 import com.PayMyBudy.service.form.TransferForm;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,11 +59,16 @@ public class UserController {
         return "contact";
     }
 
-    @PostMapping("login")
-    public String processLogin(@ModelAttribute("loginForm") LoginForm form) {
+    @PostMapping(path="/login",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public String processLogin( LoginForm form) {
         if (userService.signin(form)) {
             return "index";
         }
         return "signin";
+    }
+    @GetMapping("profile")
+    public ModelAndView transfer(Model model) {
+
+        return new ModelAndView("transfer", "transferForm", new TransferForm());
     }
 }

@@ -36,7 +36,22 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 
 
     }
-
+        /*   http
+                   .csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/signin.css","/index.css","/contact.css","js/*","/signin","/register","login").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/signin")
+                .loginProcessingUrl("login")
+                .defaultSuccessUrl("/paymybuddy", true)
+                .and()
+                .httpBasic()
+                .and()
+                .rememberMe();
+*/
 
 
 }
