@@ -59,30 +59,7 @@
             </form:form>
 
             </br>
-            <h4> Send money
-            </h4>
 
-            <div>
-
-
-              <main>
-                </br>
-                <h2 class="display-6 text-left mb-4">My transactions</h2>
-
-                <div class="table-responsive">
-                  <table class="table text-center">
-                    <thead>
-                      <tr>
-
-                        <th style="width: 33%;">Connection</th>
-                        <th style="width: 33%;">Description</th>
-                        <th style="width: 33%;">Amount</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                  </table>
                 </div>
               </main>
 

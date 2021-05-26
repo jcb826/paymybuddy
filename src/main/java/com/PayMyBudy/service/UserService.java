@@ -3,8 +3,10 @@ package com.PayMyBudy.service;
 import com.PayMyBudy.model.Account;
 import com.PayMyBudy.model.Connection;
 import com.PayMyBudy.model.User;
+import com.PayMyBudy.repository.AccountRepository;
 import com.PayMyBudy.repository.UserRepository;
 import com.PayMyBudy.service.form.AddConnectionForm;
+import com.PayMyBudy.service.form.AddIbanForm;
 import com.PayMyBudy.service.form.LoginForm;
 import com.PayMyBudy.service.form.RegistrationForm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public class UserService {
     PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -89,6 +93,16 @@ public class UserService {
             userProxy.deleteUser(id);;
         }
     */
+    public void addIban(final AddIbanForm form) {
+
+        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+                .orElseThrow(() -> new RuntimeException("user with email  not found"));
+        Account account = accountRepository.findAccountByUserId(connectedUser.getId());
+       account.setIban(form.getIban());
+
+       accountRepository.save(account);
+    }
+
 
 
 }

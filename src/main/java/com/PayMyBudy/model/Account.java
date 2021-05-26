@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 @Data
 @Entity
 public class Account {
@@ -15,20 +16,20 @@ public class Account {
 
 
     private Integer accountId;
-     @OneToOne
+    @OneToOne
     private User user;
     private Double amount;
+    private String iban;
 
+    public Account plus(double amount) {
 
-    public Account plus (double amount){
-
-        this.amount+=amount;
+        this.amount += amount;
         return this;
     }
 
-    public Account minus (double amount){
+    public Account minus(double amount) {
 
-        this.amount-=amount;
+        this.amount -= amount;
         return this;
     }
 }

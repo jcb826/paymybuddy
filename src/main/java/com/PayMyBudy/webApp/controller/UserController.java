@@ -4,10 +4,7 @@ import com.PayMyBudy.model.Transfer;
 import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.TransferService;
 import com.PayMyBudy.service.UserService;
-import com.PayMyBudy.service.form.AddConnectionForm;
-import com.PayMyBudy.service.form.LoginForm;
-import com.PayMyBudy.service.form.RegistrationForm;
-import com.PayMyBudy.service.form.TransferForm;
+import com.PayMyBudy.service.form.*;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,16 +56,27 @@ public class UserController {
         return "contact";
     }
 
-    @PostMapping(path="/login",consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String processLogin( LoginForm form) {
+    @PostMapping(path = "/login", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public String processLogin(LoginForm form) {
         if (userService.signin(form)) {
             return "index";
         }
         return "signin";
     }
-    @GetMapping("profile")
-    public ModelAndView transfer(Model model) {
 
-        return new ModelAndView("transfer", "transferForm", new TransferForm());
+    @GetMapping("profile")
+    public ModelAndView profile(Model model) {
+        return new ModelAndView("profile");
+    }
+
+    @GetMapping("add-iban")
+    public ModelAndView getAddConnectionForm(Model model) {
+        return new ModelAndView("add-iban", "addIbanForm", new AddIbanForm());
+    }
+    @PostMapping("add-iban")
+    public ModelAndView addIban(@ModelAttribute("addIbanForm") AddIbanForm form) {
+        userService.addIban(form);
+        return new ModelAndView("add-connection", "addConnectionForm", new AddConnectionForm());
     }
 }
+

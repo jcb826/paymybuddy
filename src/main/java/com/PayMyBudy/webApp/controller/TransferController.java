@@ -29,7 +29,9 @@ public class TransferController {
     public ModelAndView transfer(Model model, @ModelAttribute("transferForm") TransferForm form) {
         transferService.transfer(form);
         List<String> contacts = connectionService.findConnectionsEmail();
+        List<Transfer> transactions = transferService.findTransactions();
         model.addAttribute("connections", contacts);
+        model.addAttribute("transfers", transactions);
         return new ModelAndView("transfer", "transferForm", new TransferForm());
     }
 

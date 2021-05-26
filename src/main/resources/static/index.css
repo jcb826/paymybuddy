@@ -51,4 +51,12 @@ border-radius: .3rem;
         }
 
 
+ #button-profile{
+         display: flex;
+         justify-content: space-between;
+               flex-direction: row-reverse;
+
+        }
+
+
 
