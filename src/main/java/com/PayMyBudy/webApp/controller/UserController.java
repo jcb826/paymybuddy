@@ -76,7 +76,7 @@ public class UserController {
     @PostMapping("add-iban")
     public ModelAndView addIban(@ModelAttribute("addIbanForm") AddIbanForm form) {
         userService.addIban(form);
-        return new ModelAndView("add-connection", "addConnectionForm", new AddConnectionForm());
+        return new ModelAndView("add-iban", "addIbanForm", new AddIbanForm());
     }
 }
 

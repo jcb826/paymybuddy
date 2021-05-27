@@ -8,6 +8,7 @@ import com.PayMyBudy.repository.AccountRepository;
 import com.PayMyBudy.repository.TransferRepository;
 import com.PayMyBudy.repository.UserRepository;
 import com.PayMyBudy.service.form.TransferForm;
+import com.PayMyBudy.service.form.TransferToBankForm;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +59,30 @@ public class TransferService {
                 .orElseThrow(() -> new RuntimeException("user with email  not found"));
         return transferRepository.findTransferByUserId(connectedUser.getId());
 
+    }
+    public String findIban(){
+        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+                .orElseThrow(() -> new RuntimeException("user with email  not found"));
+        Account account = accountRepository.findAccountByUserId(connectedUser.getId());
+       return account.getIban();
+
+    }
+    public void transferToBank(TransferToBankForm form) {
+        if (form != null) {
+            User from = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+                    .orElseThrow(() -> new RuntimeException("user with email  not found"));
+
+
+            // get the Account of the coennnected user
+
+            accountRepository.save(from.getAccount().minus(form.getAmount()));
+
+
+
+
+        } else {
+
+        }
     }
 
 
