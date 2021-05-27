@@ -67,6 +67,8 @@ public class UserController {
     @GetMapping("profile")
     public ModelAndView profile(Model model) {
         return new ModelAndView("profile");
+
+
     }
 
     @GetMapping("add-iban")

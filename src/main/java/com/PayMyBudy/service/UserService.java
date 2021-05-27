@@ -2,6 +2,7 @@ package com.PayMyBudy.service;
 
 import com.PayMyBudy.model.Account;
 import com.PayMyBudy.model.Connection;
+import com.PayMyBudy.model.Transfer;
 import com.PayMyBudy.model.User;
 import com.PayMyBudy.repository.AccountRepository;
 import com.PayMyBudy.repository.UserRepository;
@@ -103,6 +104,12 @@ public class UserService {
        accountRepository.save(account);
     }
 
+    public Account findAccount(){
+        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+                .orElseThrow(() -> new RuntimeException("user with email  not found"));
+       return accountRepository.findAccountByUserId(connectedUser.getId());
+
+    }
 
 
 }

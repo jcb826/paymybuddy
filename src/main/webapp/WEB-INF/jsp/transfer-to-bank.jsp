@@ -66,12 +66,6 @@
               <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/signin">Log off </a>
             </nav>
           </header>
-          <div class="box">
-
-            <div class="selected"><a href="connection"><button class="btn btn-lg btn-primary btn-block">add a connection</button></a></div>
-
-          </div>
-
 
           <div class="flex">
 
@@ -105,15 +99,36 @@
 
                   <div class="col-md-3">
                     </br>
-                    <form:button class="btn btn-primary btn-lg btn-block" type="submit"> Pay </form:button>
+                    <form:button class="btn btn-primary btn-lg btn-block" type="submit"> Send </form:button>
 
                   </div>
                 </div>
 
               </form:form>
 
-              <main>
-              </main>
+             <main>
+                             </br>
+                             <h2 class="display-6 text-left mb-4">My account balance</h2>
+
+                             <div class="table-responsive">
+                               <table class="table text-center">
+                                 <thead>
+                                   <tr>
+                                     <th style="width: 50%;">User</th>
+                                     <th style="width: 50%;">Amount</th>
+                                   </tr>
+                                 </thead>
+                                 <tbody>
+
+                                      <tr>
+                                      <td> ${account.user.firstName} ${account.user.lastName}</td>
+                                      <td>${account.amount}</td>
+                                      </tr>
+
+                                 </tbody>
+                               </table>
+                             </div>
+                           </main>
 
               <footer class="pt-4 my-md-5 pt-md-5 border-top">
 
