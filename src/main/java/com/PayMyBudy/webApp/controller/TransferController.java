@@ -6,6 +6,7 @@ import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.TransferService;
 import com.PayMyBudy.service.UserService;
 import com.PayMyBudy.service.form.TransferForm;
+import com.PayMyBudy.service.form.TransferToAccountForm;
 import com.PayMyBudy.service.form.TransferToBankForm;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,5 +64,10 @@ public class TransferController {
         model.addAttribute("account", account);
         model.addAttribute("iban", iban);
         return new ModelAndView("transfer-to-bank", "transferToBankForm", new TransferToBankForm());
+    }
+    @GetMapping("transfer-to-account")
+    public ModelAndView transferToaccount(Model model) {
+
+        return new ModelAndView("transfer-to-account");
     }
 }

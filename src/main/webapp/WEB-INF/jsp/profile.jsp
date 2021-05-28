@@ -70,10 +70,33 @@
 
             <div class="selected"><a href="add-iban"><button class="btn btn-lg btn-primary btn-block">Add an IBAN</button></a></div>
             <div class="selected"><a href="transfer-to-bank"><button class="btn btn-lg btn-primary btn-block">Transfer cash to your bank</button></a></div>
-            <div class="selected"><a href="connection"><button class="btn btn-lg btn-primary btn-block">Add cash on your account</button></a></div>
+            <div class="selected"><a href="transfer-to-account"><button class="btn btn-lg btn-primary btn-block">Add cash on your account</button></a></div>
 
           </div>
 
+ <main>
+                             </br>
+                             <h2 class="display-6 text-left mb-4">My account balance</h2>
+
+                             <div class="table-responsive">
+                               <table class="table text-center">
+                                 <thead>
+                                   <tr>
+                                     <th style="width: 50%;">User</th>
+                                     <th style="width: 50%;">Amount</th>
+                                   </tr>
+                                 </thead>
+                                 <tbody>
+
+                                      <tr>
+                                      <td> ${account.user.firstName} ${account.user.lastName}</td>
+                                      <td>${account.amount}</td>
+                                      </tr>
+
+                                 </tbody>
+                               </table>
+                             </div>
+                           </main>
 
 
 

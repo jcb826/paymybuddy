@@ -1,5 +1,6 @@
 package com.PayMyBudy.webApp.controller;
 
+import com.PayMyBudy.model.Account;
 import com.PayMyBudy.model.Transfer;
 import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.TransferService;
@@ -66,6 +67,9 @@ public class UserController {
 
     @GetMapping("profile")
     public ModelAndView profile(Model model) {
+        Account account = userService.findAccount();
+        model.addAttribute("account", account);
+
         return new ModelAndView("profile");
 
 
