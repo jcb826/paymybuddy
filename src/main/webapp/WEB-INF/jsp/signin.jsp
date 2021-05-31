@@ -12,7 +12,7 @@
         integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
       <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet"
         crossorigin="anonymous">
-      <link href="signin.css" rel="stylesheet">
+      <link href="index.css" rel="stylesheet">
     </head>
 
     <body class="text-center" cz-shortcut-listen="true">

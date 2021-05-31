@@ -74,6 +74,38 @@
             </h4>
 
             <div>
+                <div>
+                          <form:form action="transfer-to-bank" method="post" class="needs-validation" modelAttribute="transferToBankForm">
+                            <div class="row g-3">
+                              <div class="col-md-5">
+                                <label for="iban" class="form-label"></label>
+                                <form:select path="iban" class="form-select" id="iban" required="true">
+                                  <option value="">Select an IBAN</option>
+                                  <c:forEach items="${iban}" var="iban">
+                                    <option value="${iban}"> ${iban} </option>
+                                  </c:forEach>
+                                  </form:select>
+                                  <div class="invalid-feedback">
+                                    Please select a valid connection.
+                                  </div>
+                              </div>
+
+                              <div class="col-md-4">
+                                <label for="amount" class="form-label"></label>
+                                <form:input path="amount" type="number" step="0.01" class="form-control floatingInput" />
+                                <div class="invalid-feedback">
+                                  Please provide a valid amount.
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                </br>
+                                <form:button class="btn btn-primary btn-lg btn-block" type="submit"> Send </form:button>
+
+                              </div>
+                            </div>
+
+                          </form:form>
 
 
              <main>
