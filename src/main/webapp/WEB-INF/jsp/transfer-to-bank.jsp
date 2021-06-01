@@ -43,7 +43,7 @@
 
       </head>
 
-      <body>
+      <body class="text-center" cz-shortcut-listen="true">
 
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
           <symbol id="check" viewBox="0 0 16 16">

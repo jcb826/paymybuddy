@@ -16,7 +16,7 @@
           integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/pricing/">
         <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="transfer-to-account.css" rel="stylesheet">
+        <link href="index.css" rel="stylesheet">
 
       </head>
 
@@ -44,83 +44,44 @@
             </nav>
           </header>
 
-         <div class="row">
-           <div class="col-75">
-             <div class="container">
-               <form action="/action_page.php">
-
-                 <div class="row">
-                   <div class="col-50">
-                     <h3>Billing Address</h3>
-                     <label for="fname"><i class="fa fa-user"></i> Full Name</label>
-                     <input type="text" id="fname" name="firstname" placeholder="John M. Doe">
-                     <label for="email"><i class="fa fa-envelope"></i> Email</label>
-                     <input type="text" id="email" name="email" placeholder="john@example.com">
-                     <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                     <input type="text" id="adr" name="address" placeholder="542 W. 15th Street">
-                     <label for="city"><i class="fa fa-institution"></i> City</label>
-                     <input type="text" id="city" name="city" placeholder="New York">
-
-                     <div class="row">
-                       <div class="col-50">
-                         <label for="state">State</label>
-                         <input type="text" id="state" name="state" placeholder="NY">
+       <div class="card">
+           <div class="card-top border-bottom text-center">  <span id="logo">Transfer cash to your Pay my buddy account</span> </div>
+           <div class="card-body">
+               <div class="row upper">  </div>
+               <div class="row">
+                   <div class="col-md-7">
+                       <div class="left border">
+                           <div class="row"> <span class="header">Payment</span>
+                               <div class="icons"> <img src="https://img.icons8.com/color/48/000000/visa.png" /> <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" /> <img src="https://img.icons8.com/color/48/000000/maestro.png" /> </div>
+                           </div>
+                           <form> <span>Cardholder's name:</span> <input placeholder="Linda Williams"> <span>Card Number:</span> <input placeholder="0125 6780 4567 9909">
+                               <div class="row">
+                                   <div class="col-4"><span>Expiry date:</span> <input placeholder="YY/MM"> </div>
+                                   <div class="col-4"><span>CVV:</span> <input id="cvv"> </div>
+                               </div> <input type="checkbox" id="save_card" class="align-left"> <label for="save_card">Save card details to wallet</label>
+                           </form>
                        </div>
-                       <div class="col-50">
-                         <label for="zip">Zip</label>
-                         <input type="text" id="zip" name="zip" placeholder="10001">
-                       </div>
-                     </div>
                    </div>
+                   <div class="col-md-5">
+                       <div class="right border">
+                           <div class="header">Enter an amount</div>
 
-                   <div class="col-50">
-                     <h3>Payment</h3>
-                     <label for="fname">Accepted Cards</label>
-                     <div class="icon-container">
-                       <i class="fa fa-cc-visa" style="color:navy;"></i>
-                       <i class="fa fa-cc-amex" style="color:blue;"></i>
-                       <i class="fa fa-cc-mastercard" style="color:red;"></i>
-                       <i class="fa fa-cc-discover" style="color:orange;"></i>
-                     </div>
-                     <label for="cname">Name on Card</label>
-                     <input type="text" id="cname" name="cardname" placeholder="John More Doe">
-                     <label for="ccnum">Credit card number</label>
-                     <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-                     <label for="expmonth">Exp Month</label>
-                     <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                           <div class="row item">
+                               <div class="col-4 align-self-center"></div>
+                               <div class="col-8"><span>Amount:</span> <input placeholder="0.0"> </div>
 
-                     <div class="row">
-                       <div class="col-50">
-                         <label for="expyear">Exp Year</label>
-                         <input type="text" id="expyear" name="expyear" placeholder="2018">
+                           </div>
+
+
+
+                           </div> <button id="btn-credit-card">Place order</button>
+
                        </div>
-                       <div class="col-50">
-                         <label for="cvv">CVV</label>
-                         <input type="text" id="cvv" name="cvv" placeholder="352">
-                       </div>
-                     </div>
                    </div>
-
-                 </div>
-                 <label>
-                   <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-                 </label>
-                 <input type="submit" value="Continue to checkout" class="btn">
-               </form>
-             </div>
+               </div>
            </div>
-
-           <div class="col-25">
-
-           </div>
-         </div>
-
-              <footer class="pt-4 my-md-5 pt-md-5 border-top">
-
-              </footer>
-            </div>
-          </div>
-        </div>
+           <div> </div>
+       </div>
 
       </body>
 
