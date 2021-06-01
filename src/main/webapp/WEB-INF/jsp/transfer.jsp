@@ -119,10 +119,10 @@
                 <div class="table-responsive">
                   <table class="table text-center">
                     <thead>
-                      <tr>
-                        <th style="width: 33%;">Connection</th>
-                        <th style="width: 33%;">Description</th>
-                        <th style="width: 33%;">Amount</th>
+                      <tr >
+                        <th>Connection</th>
+                        <th>Description</th>
+                        <th>Amount</th>
                       </tr>
                     </thead>
                     <tbody>

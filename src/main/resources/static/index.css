@@ -8,7 +8,12 @@ body {
   background-image: linear-gradient(180deg, #eee, #fff 100px, #fff);
 }
 
-
+th {
+width: 33%;
+}
+thead{
+background-color: #31c771;
+}
 .container {
   max-width: 1500px;
 }
