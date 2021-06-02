@@ -34,7 +34,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe();
 
 
-
     }
         /*   http
                    .csrf().disable()

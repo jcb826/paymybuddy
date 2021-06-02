@@ -121,15 +121,15 @@
                     <thead>
                       <tr >
                         <th>Connection</th>
-                        <th>Description</th>
+                        <th>Connection Name</th>
                         <th>Amount</th>
                       </tr>
                     </thead>
                     <tbody>
                          <c:forEach items="${transfers}" var="transfer">
                          <tr>
-                         <td>${transfer.to.firstName} ${transfer.to.lastName}</td>
-                         <td> description </td>
+                         <td>${transfer.to.email} </td>
+                         <td> ${transfer.to.firstName} ${transfer.to.lastName}</td>
                          <td> ${transfer.amountBeforeFee} €</td>
                          </tr>
                           </c:forEach>

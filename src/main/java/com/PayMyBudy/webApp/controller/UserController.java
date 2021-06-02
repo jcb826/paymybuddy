@@ -26,9 +26,14 @@ public class UserController {
         this.transferService = transferService;
     }
 
-    @RequestMapping("/")
-    public String home() {
-        return "index";
+
+    @GetMapping("/")
+    public ModelAndView home(Model model) {
+
+        List<Transfer> transactions = transferService.findTransactions();
+
+        model.addAttribute("transfers", transactions);
+        return new ModelAndView("index");
     }
 
     @GetMapping("/signin")
