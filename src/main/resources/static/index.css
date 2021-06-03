@@ -324,3 +324,12 @@ input[type=checkbox] {
 
 #cvv:hover {}
 
+#content{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--ntp-one-google-bar-height));
+    min-width: fit-content;
+    position: relative;
+    z-index: 1;
+}

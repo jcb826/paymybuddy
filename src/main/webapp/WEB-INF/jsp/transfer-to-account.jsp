@@ -44,7 +44,7 @@
             </nav>
           </header>
 
-       <div class="card">
+       <div id="content">
            <div class="card-top border-bottom text-center">  <span id="logo">Transfer cash to your Pay my buddy account</span> </div>
            <div class="card-body">
                <div class="row upper">  </div>
@@ -68,15 +68,39 @@
 
                            <div class="row item">
                                <div class="col-4 align-self-center"></div>
-                               <div class="col-8"><span>Amount:</span> <input placeholder="0.0"> </div>
+
+
+
+ <form:form action="transfer-to-account" method="post" class="needs-validation" modelAttribute="transferToAccountForm">
+                            <div class="row g-3">
+
+
+                              <div class="col-8">
+                                <label for="amount" class="form-label"></label>
+                                <form:input path="amount" type="number" step="0.01" class="form-control floatingInput" />
+                                <div class="invalid-feedback">
+                                  Please provide a valid amount.
+                                </div>
+                              </div>
+
+                              <div class="col-md-3">
+                                </br>
+
+
+                              </div>
+                            </div>
+
+
 
                            </div>
 
 
 
-                           </div> <button id="btn-credit-card">Place order</button>
+                           </div><form:button id="btn-credit-card" type="submit">Place order</form:button>
+
 
                        </div>
+                       </form:form>
                    </div>
                </div>
            </div>
