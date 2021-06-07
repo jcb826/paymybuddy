@@ -34,7 +34,8 @@ public class TransferService {
 
     public void transfer(TransferForm form) {
         if (form != null) {
-            User from = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+            org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User connectedUser = userRepository.findUserByMail(springUser.getUsername())
                     .orElseThrow(() -> new RuntimeException("user with email  not found"));
             User to = userRepository.findUserByMail(form.getTo())
                     .orElseThrow(() -> new RuntimeException("user with email  not found"));
@@ -42,11 +43,11 @@ public class TransferService {
             transfer.setDate(LocalDateTime.now());
             transfer.setAmountBeforeFee(form.getAmount());
             transfer.setAmountAfterFee(form.getAmount() - form.getAmount() * 0.005);
-            transfer.setFrom(from);
+            transfer.setFrom(connectedUser);
             transfer.setTo(to);
             // get the Account of the coennnected user
 
-            accountRepository.save(from.getAccount().minus(transfer.getAmountBeforeFee()));
+            accountRepository.save(connectedUser.getAccount().minus(transfer.getAmountBeforeFee()));
             accountRepository.save(to.getAccount().plus(transfer.getAmountAfterFee()));
             transferRepository.save(transfer);
 
@@ -56,27 +57,31 @@ public class TransferService {
         }
     }
     public List<Transfer> findTransactions(){
-        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+        org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User connectedUser = userRepository.findUserByMail(springUser.getUsername())
                 .orElseThrow(() -> new RuntimeException("user with email  not found"));
         return transferRepository.findTransferByUserId(connectedUser.getId());
 
     }
     public String findIban(){
-        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+        org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User connectedUser = userRepository.findUserByMail(springUser.getUsername())
                 .orElseThrow(() -> new RuntimeException("user with email  not found"));
         Account account = accountRepository.findAccountByUserId(connectedUser.getId());
        return account.getIban();
 
     }
     public void transferToBank(TransferToBankForm form) {
+
         if (form != null) {
-            User from = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+            org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User connectedUser = userRepository.findUserByMail(springUser.getUsername())
                     .orElseThrow(() -> new RuntimeException("user with email  not found"));
 
 
             // get the Account of the coennnected user
 
-            accountRepository.save(from.getAccount().minus(form.getAmount()));
+            accountRepository.save(connectedUser.getAccount().minus(form.getAmount()));
 
 
 
@@ -87,13 +92,14 @@ public class TransferService {
     }
     public void transferToAccount(TransferToAccountForm form) {
         if (form != null) {
-            User from = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+            org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User connectedUser = userRepository.findUserByMail(springUser.getUsername())
                     .orElseThrow(() -> new RuntimeException("user with email  not found"));
 
 
             // get the Account of the coennnected user
 
-            accountRepository.save(from.getAccount().plus(form.getAmount()));
+            accountRepository.save(connectedUser.getAccount().plus(form.getAmount()));
 
 
 

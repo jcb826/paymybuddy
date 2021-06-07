@@ -40,7 +40,7 @@
               <a class="me-3 py-2 text-dark text-decoration-none" href="/paymybuddy/transfer">Transfer</a>
               <a class="me-3 py-2 text-dark text-decoration-none" href="/paymybuddy/profile">Profile</a>
               <a class="me-3 py-2 text-dark text-decoration-none" href="/paymybuddy/contact">Contact</a>
-              <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/signin">Log off </a>
+              <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/logout">Log off </a>
             </nav>
           </header>
           <div class="flex">

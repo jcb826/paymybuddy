@@ -63,7 +63,7 @@
               <a class="me-3 py-2 text-dark text-decoration-none" href="/paymybuddy/transfer">Transfer</a>
               <a class="me-3 py-2 text-dark text-decoration-none" href="/paymybuddy/profile">Profile</a>
               <a class="me-3 py-2 text-dark text-decoration-none" href="/paymybuddy/contact">Contact</a>
-              <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/signin">Log off </a>
+              <a class="py-2 text-dark text-decoration-none" href="/paymybuddy/logout">Log off </a>
             </nav>
           </header>
           <div id="button-profile">
@@ -89,8 +89,8 @@
                                  <tbody>
 
                                       <tr>
-                                      <td> ${account.user.firstName} ${account.user.lastName}</td>
-                                      <td>${account.amount}</td>
+                                      <td> ${account.firstName} ${account.lastName}</td>
+                                      <td>${account.account.amount}</td>
                                       </tr>
 
                                  </tbody>

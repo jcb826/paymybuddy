@@ -2,6 +2,7 @@ package com.PayMyBudy.webApp.controller;
 
 import com.PayMyBudy.model.Account;
 import com.PayMyBudy.model.Transfer;
+import com.PayMyBudy.model.User;
 import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.TransferService;
 import com.PayMyBudy.service.UserService;
@@ -24,7 +25,6 @@ public class TransferController {
     private final TransferService transferService;
     private final ConnectionService connectionService;
     private final UserService userService;
-
     public TransferController(TransferService transferService, ConnectionService connectionService, UserService userService) {
         this.transferService = transferService;
         this.connectionService = connectionService;
@@ -49,32 +49,28 @@ public class TransferController {
         model.addAttribute("transfers", transactions);
         return new ModelAndView("transfer", "transferForm", new TransferForm());
     }
-
     @GetMapping("transfer-to-bank")
     public ModelAndView transferToBank(Model model) {
         String iban = transferService.findIban();
-        Account account = userService.findAccount();
+        User account = userService.findAccount();
         model.addAttribute("account", account);
         model.addAttribute("iban", iban);
         return new ModelAndView("transfer-to-bank", "transferToBankForm", new TransferToBankForm());
     }
-
     @PostMapping("transfer-to-bank")
     public ModelAndView transferCashToBank(Model model, @ModelAttribute("transferToBankForm") TransferToBankForm form) {
         transferService.transferToBank(form);
         String iban = transferService.findIban();
-        Account account = userService.findAccount();
+        User account = userService.findAccount();
         model.addAttribute("account", account);
         model.addAttribute("iban", iban);
         return new ModelAndView("transfer-to-bank", "transferToBankForm", new TransferToBankForm());
     }
-
     @GetMapping("transfer-to-account")
     public ModelAndView transferToaccount(Model model) {
 
         return new ModelAndView("transfer-to-account", "transferToAccountForm", new TransferToAccountForm());
     }
-
     @PostMapping("transfer-to-account")
     public ModelAndView transferCashToAccount(Model model, @ModelAttribute("transferToAccountForm") TransferToAccountForm form) {
         transferService.transferToAccount(form);

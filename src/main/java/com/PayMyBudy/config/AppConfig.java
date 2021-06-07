@@ -18,39 +18,25 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","index","/css/**","js/*").authenticated()
-                .anyRequest()
-                .permitAll()
-                .and()
-                .formLogin()
-                .loginPage("/signin").permitAll()
-                .defaultSuccessUrl("/paymybuddy", true)
-                .and()
-                .httpBasic()
-                .and()
-                .rememberMe();
-
-
-    }
-        /*   http
-                   .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/signin.css","/index.css","/contact.css","js/*","/signin","/register","login").permitAll()
+                .antMatchers( "/index.css","/signin", "/register", "/login").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/signin")
-                .loginProcessingUrl("login")
-                .defaultSuccessUrl("/paymybuddy", true)
+                .loginPage("/login")
+            //    .loginProcessingUrl("/process_login")
+                .defaultSuccessUrl("/", true)
                 .and()
                 .httpBasic()
                 .and()
                 .rememberMe();
-*/
+
+    }
 
 
 }

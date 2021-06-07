@@ -17,8 +17,7 @@ public class Account {
 
 
     private Integer accountId;
-    @OneToOne
-    private User user;
+
     private Double amount;
     private String iban;
 

@@ -2,6 +2,7 @@ package com.PayMyBudy.webApp.controller;
 
 import com.PayMyBudy.model.Account;
 import com.PayMyBudy.model.Transfer;
+import com.PayMyBudy.model.User;
 import com.PayMyBudy.service.ConnectionService;
 import com.PayMyBudy.service.TransferService;
 import com.PayMyBudy.service.UserService;
@@ -29,17 +30,12 @@ public class UserController {
 
     @GetMapping("/")
     public ModelAndView home(Model model) {
-
         List<Transfer> transactions = transferService.findTransactions();
-
         model.addAttribute("transfers", transactions);
         return new ModelAndView("index");
     }
 
-    @GetMapping("/signin")
-    public ModelAndView showForm(Model model) {
-        return new ModelAndView("signin", "loginForm", new LoginForm());
-    }
+
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView processRequest(@ModelAttribute("registrationForm") RegistrationForm form) {
@@ -62,17 +58,9 @@ public class UserController {
         return "contact";
     }
 
-    @PostMapping(path = "/login", consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
-    public String processLogin(LoginForm form) {
-        if (userService.signin(form)) {
-            return "index";
-        }
-        return "signin";
-    }
-
     @GetMapping("profile")
     public ModelAndView profile(Model model) {
-        Account account = userService.findAccount();
+        User account = userService.findAccount();
         model.addAttribute("account", account);
 
         return new ModelAndView("profile");

@@ -43,7 +43,7 @@ public class UserService {
         User userModel = populateCustomerData(form);
         Account account = new Account();
         account.setAmount(0.0);
-        account.setUser(userModel);
+
         userModel.setAccount(account);
         return userRepository.save(userModel);
     }
@@ -59,25 +59,7 @@ public class UserService {
 
 
     //  deuxieme maniere de faire userRepository.findUserByMail(form.getEmail()).filter(u->passwordEncoder.matches(rawPassword,u.getPassword())).isPresent();
-    public boolean signin(LoginForm form) {
 
-        Optional<User> user = userRepository
-                .findUserByMail(form.getEmail());
-
-        if (user.isPresent()) {
-
-
-            boolean match = passwordEncoder.matches(form.getPassword(), user.get().getPassword());
-            if (match){
-                Authentication auth= new UsernamePasswordAuthenticationToken(user.get().getEmail(), null, List.of());
-                SecurityContextHolder.getContext().setAuthentication(auth);
-            }
-
-            return match;
-
-        }
-        return false;
-    }
 
 
     /*
@@ -96,18 +78,20 @@ public class UserService {
     */
     public void addIban(final AddIbanForm form) {
 
-        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+        org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User connectedUser = userRepository.findUserByMail(springUser.getUsername())
                 .orElseThrow(() -> new RuntimeException("user with email  not found"));
-        Account account = accountRepository.findAccountByUserId(connectedUser.getId());
+        Account account = connectedUser.getAccount();
        account.setIban(form.getIban());
 
        accountRepository.save(account);
     }
 
-    public Account findAccount(){
-        User connectedUser = userRepository.findUserByMail(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString())
+    public User findAccount(){
+        org.springframework.security.core.userdetails.User springUser = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       return userRepository.findUserByMail(springUser.getUsername())
                 .orElseThrow(() -> new RuntimeException("user with email  not found"));
-       return accountRepository.findAccountByUserId(connectedUser.getId());
+
 
     }
 
