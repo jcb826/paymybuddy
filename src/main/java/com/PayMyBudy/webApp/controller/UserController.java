@@ -40,7 +40,7 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView processRequest(@ModelAttribute("registrationForm") RegistrationForm form) {
         userService.registration(form);
-        return new ModelAndView("signin", "loginForm", new LoginForm());
+        return new ModelAndView("login", "loginForm", new LoginForm());
     }
 
     @GetMapping("/register")

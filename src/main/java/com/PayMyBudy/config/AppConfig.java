@@ -23,7 +23,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers( "/index.css","/signin", "/register", "/login").permitAll()
+                .antMatchers( "/index.css","/signin", "/register", "/login","/registration").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
