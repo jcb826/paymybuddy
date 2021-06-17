@@ -43,7 +43,6 @@ public class UserService {
         User userModel = populateCustomerData(form);
         Account account = new Account();
         account.setAmount(0.0);
-
         userModel.setAccount(account);
         return userRepository.save(userModel);
     }

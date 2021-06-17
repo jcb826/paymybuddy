@@ -45,7 +45,7 @@ public class TransferService {
             transfer.setAmountAfterFee(form.getAmount() - form.getAmount() * 0.005);
             transfer.setFrom(connectedUser);
             transfer.setTo(to);
-            // get the Account of the coennnected user
+
 
             accountRepository.save(connectedUser.getAccount().minus(transfer.getAmountBeforeFee()));
             accountRepository.save(to.getAccount().plus(transfer.getAmountAfterFee()));
